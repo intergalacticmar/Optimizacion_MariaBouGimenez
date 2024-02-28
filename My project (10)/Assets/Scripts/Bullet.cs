@@ -3,43 +3,42 @@ using System.Collections.Generic;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f; // Velocidad de la bala
+    public float speed = 10f; 
 
     private void Update()
     {
         MoveBullet();
     }
 
-    // Método para mover la bala hacia adelante en el eje Z
+
     void MoveBullet()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    // Método para desactivar la bala cuando sale de la pantalla
+
     void OnBecameInvisible()
     {
-        gameObject.SetActive(false); // Desactivar la bala
+        gameObject.SetActive(false);
     }
 
-    // Método para activar la bala
     public void ActivateBullet(Vector3 position, Quaternion rotation)
     {
-        transform.position = position; // Establecer la posición de la bala
-        transform.rotation = rotation; // Establecer la rotación de la bala
-        gameObject.SetActive(true); // Activar la bala
+        transform.position = position; 
+        transform.rotation = rotation; 
+        gameObject.SetActive(true);
     }
 }
 
 public class BulletPool : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Prefab de la bala
-    public int poolSize = 10; // Tamaño del pool
-    private List<GameObject> bulletPool; // Pool de balas
+    public GameObject bulletPrefab; 
+    public int poolSize = 10; 
+    private List<GameObject> bulletPool;
 
     void Start()
     {
-        // Inicializar el pool de balas
+
         bulletPool = new List<GameObject>();
 
         for (int i = 0; i < poolSize; i++)
@@ -50,7 +49,6 @@ public class BulletPool : MonoBehaviour
         }
     }
 
-    // Método para obtener una bala del pool
     public GameObject GetBullet()
     {
         foreach (GameObject bullet in bulletPool)
